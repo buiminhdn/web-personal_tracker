@@ -1,6 +1,5 @@
 import { toIsoDate } from "./date";
 import { createId } from "./id";
-import type { Bookmark } from "../features/bookmarks/use-bookmarks";
 import type { Habit } from "../features/habits/use-habits";
 import type { Task, TaskStatus } from "../features/todo/task-types";
 
@@ -8,8 +7,6 @@ import type { Task, TaskStatus } from "../features/todo/task-types";
 const DATA_KEYS = {
   todos: "pt.todos",
   note: "pt.note",
-  bookmarks: "pt.bookmarks",
-  groups: "pt.bookmark-groups",
   habits: "pt.habits",
 } as const;
 
@@ -38,26 +35,6 @@ const SAMPLE_TASKS: [string, string, number | null, TaskStatus][] = [
   ["Tổng vệ sinh nhà cửa", "Lau nhà, giặt rèm, dọn ban công.", -8, "done"],
 ];
 
-/** Demo bookmarks: url, title, group. */
-const SAMPLE_BOOKMARKS: [string, string, string][] = [
-  ["https://mail.google.com", "Gmail", "Hằng ngày"],
-  ["https://www.google.com/maps", "Google Maps", "Hằng ngày"],
-  ["https://calendar.google.com", "Google Lịch", "Hằng ngày"],
-  ["https://vnexpress.net", "VnExpress", "Tin tức"],
-  ["https://tuoitre.vn", "Tuổi Trẻ", "Tin tức"],
-  ["https://thanhnien.vn", "Thanh Niên", "Tin tức"],
-  ["https://shopee.vn", "Shopee", "Mua sắm"],
-  ["https://www.lazada.vn", "Lazada", "Mua sắm"],
-  ["https://tiki.vn", "Tiki", "Mua sắm"],
-  ["https://www.cooky.vn", "Cooky - Công thức nấu ăn", "Nấu ăn"],
-  ["https://www.dienmayxanh.com", "Điện Máy Xanh", "Mua sắm"],
-  ["https://www.facebook.com", "Facebook", ""],
-  ["https://www.youtube.com", "YouTube", "Giải trí"],
-  ["https://www.netflix.com", "Netflix", "Giải trí"],
-];
-
-const SAMPLE_GROUPS = ["Hằng ngày", "Tin tức", "Mua sắm", "Nấu ăn", "Giải trí"];
-
 const SAMPLE_NOTE = `Việc cần làm tuần này
 - Đi siêu thị mua đồ ăn cho cả tuần
 - Đặt lịch cắt tóc cuối tuần
@@ -80,16 +57,6 @@ function buildTasks(): Task[] {
   }));
 }
 
-function buildBookmarks(): Bookmark[] {
-  return SAMPLE_BOOKMARKS.map(([url, title, group], i) => ({
-    id: createId(),
-    url,
-    title,
-    group,
-    createdAt: SAMPLE_BOOKMARKS.length - i,
-  }));
-}
-
 function buildHabits(): Habit[] {
   return [
     { id: createId(), name: "Uống đủ nước", done: [0, -1, -2, -3].map(isoInDays) },
@@ -103,8 +70,6 @@ export function writeSampleData() {
   const store = window.localStorage;
   store.setItem(DATA_KEYS.todos, JSON.stringify(buildTasks()));
   store.setItem(DATA_KEYS.note, JSON.stringify(SAMPLE_NOTE));
-  store.setItem(DATA_KEYS.bookmarks, JSON.stringify(buildBookmarks()));
-  store.setItem(DATA_KEYS.groups, JSON.stringify(SAMPLE_GROUPS));
   store.setItem(DATA_KEYS.habits, JSON.stringify(buildHabits()));
 }
 

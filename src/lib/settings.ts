@@ -1,21 +1,14 @@
-/** Per-browser personalization for the dashboard (board title, theme, etc). */
-
-export type ThemeMode = "light" | "dark";
+/** Per-browser personalization for the dashboard (board title, accent). */
 
 export type Settings = {
   boardTitle: string;
-  theme: ThemeMode;
   /** Primary/accent colour as a hex string; drives every highlight. */
   primary: string;
-  /** Background image path under /public, or "" for a plain backdrop. */
-  background: string;
 };
 
 export const DEFAULT_SETTINGS: Settings = {
   boardTitle: "Personal Tracker",
-  theme: "light",
   primary: "#f43f5e",
-  background: "/bg-2.jpg",
 };
 
 export const PRIMARY_COLORS = [
@@ -25,18 +18,6 @@ export const PRIMARY_COLORS = [
   { name: "Rose", value: "#f43f5e" },
   { name: "Amber", value: "#f59e0b" },
   { name: "Slate", value: "#64748b" },
-];
-
-export const BACKGROUNDS = [
-  { name: "Lá thu", value: "/bg.jpg" },
-  { name: "Lá xanh", value: "/bg-2.jpg" },
-  { name: "Khinh khí cầu", value: "/bg-3.jpg" },
-  { name: "Bờ băng", value: "/bg-4.jpg" },
-  { name: "Đồi cát đêm", value: "/bg-5.jpg" },
-  { name: "Đèo tuyết", value: "/bg-6.jpg" },
-  { name: "Sa mạc", value: "/bg-7.jpg" },
-  { name: "Rừng thông", value: "/bg-8.jpg" },
-  { name: "Trơn", value: "" },
 ];
 
 /**
@@ -75,17 +56,9 @@ function strongAccent(hex: string): string {
   return `#${hex2(r0)}${hex2(g0)}${hex2(b0)}`;
 }
 
-/** Push the current settings into the DOM (theme class, accent var, bg image). */
+/** Push the current settings into the DOM (accent colour vars). */
 export function applySettings(s: Settings) {
   const root = document.documentElement;
-  const isDark = s.theme === "dark";
-  root.classList.toggle("dark", isDark);
   root.style.setProperty("--color-accent", s.primary);
   root.style.setProperty("--color-accent-strong", strongAccent(s.primary));
-  // Dark theme dims the photo so bright images don't fight the dark UI.
-  const dim = isDark ? "linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5))," : "";
-  document.body.style.backgroundColor = isDark ? "#0c0c0e" : "#6b5566";
-  document.body.style.backgroundImage = s.background
-    ? `${dim}url("${s.background}")`
-    : "none";
 }

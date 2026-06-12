@@ -18,7 +18,7 @@ export const STATUS_META: Record<
   { label: string; dot: string; chip: string }
 > = {
   backlog: { label: "Backlog", dot: "bg-zinc-400", chip: "bg-surface-muted text-ink-soft" },
-  todo: { label: "Todo", dot: "bg-sky-500", chip: "bg-sky-50 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300" },
-  doing: { label: "Doing", dot: "bg-amber-500", chip: "bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300" },
+  todo: { label: "Todo", dot: "bg-sky-500", chip: "bg-sky-50 text-sky-700" },
+  doing: { label: "Doing", dot: "bg-amber-500", chip: "bg-amber-50 text-amber-700" },
   done: { label: "Done", dot: "bg-accent", chip: "bg-accent-soft text-accent-ink" },
 };

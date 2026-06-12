@@ -1,6 +1,6 @@
-import { Check, Moon, Sparkles, Sun, Trash2 } from "lucide-react";
+import { Check, Sparkles, Trash2 } from "lucide-react";
 import { cn } from "../lib/cn";
-import { BACKGROUNDS, PRIMARY_COLORS, type Settings } from "../lib/settings";
+import { PRIMARY_COLORS, type Settings } from "../lib/settings";
 import { clearData, createSampleData } from "../lib/sample-data";
 import { useConfirm } from "./confirm-dialog";
 import { FieldLabel, TextField } from "./form-controls";
@@ -26,7 +26,7 @@ export function SettingsModal({
       await confirm({
         title: "Xoá toàn bộ dữ liệu?",
         message:
-          "Tất cả task, ghi chú, bookmark sẽ bị xoá. Cài đặt giao diện được giữ lại.",
+          "Tất cả task, ghi chú, thói quen sẽ bị xoá. Cài đặt giao diện được giữ lại.",
         confirmLabel: "Xoá data",
         danger: true,
       })
@@ -40,7 +40,7 @@ export function SettingsModal({
       await confirm({
         title: "Tạo dữ liệu mẫu?",
         message:
-          "Thao tác này ghi đè toàn bộ task, ghi chú, bookmark hiện có bằng bộ dữ liệu mẫu.",
+          "Thao tác này ghi đè toàn bộ task, ghi chú, thói quen hiện có bằng bộ dữ liệu mẫu.",
         confirmLabel: "Tạo data mẫu",
       })
     ) {
@@ -58,24 +58,6 @@ export function SettingsModal({
             placeholder="Tên dashboard của bạn"
             onChange={(e) => onUpdate({ boardTitle: e.target.value })}
           />
-        </div>
-
-        <div>
-          <FieldLabel>Giao diện</FieldLabel>
-          <div className="grid grid-cols-2 gap-2">
-            <ThemeOption
-              active={settings.theme === "light"}
-              icon={<Sun size={16} />}
-              label="Sáng"
-              onClick={() => onUpdate({ theme: "light" })}
-            />
-            <ThemeOption
-              active={settings.theme === "dark"}
-              icon={<Moon size={16} />}
-              label="Tối"
-              onClick={() => onUpdate({ theme: "dark" })}
-            />
-          </div>
         </div>
 
         <div>
@@ -101,37 +83,6 @@ export function SettingsModal({
           </div>
         </div>
 
-        <div>
-          <FieldLabel>Ảnh nền</FieldLabel>
-          <div className="grid grid-cols-3 gap-2">
-            {BACKGROUNDS.map((bg) => (
-              <button
-                key={bg.name}
-                type="button"
-                onClick={() => onUpdate({ background: bg.value })}
-                className={cn(
-                  "relative aspect-video overflow-hidden rounded-[var(--radius-inner)] bg-surface-muted ring-2 transition",
-                  settings.background === bg.value
-                    ? "ring-accent"
-                    : "ring-transparent hover:ring-line",
-                )}
-              >
-                {bg.value ? (
-                  <img
-                    src={bg.value}
-                    alt={bg.name}
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <span className="grid h-full place-items-center text-[11px] font-medium text-ink-soft">
-                    {bg.name}
-                  </span>
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-
         <div className="grid grid-cols-2 gap-2 border-t border-line pt-4">
           <button
             type="button"
@@ -152,33 +103,5 @@ export function SettingsModal({
         </div>
       </div>
     </Modal>
-  );
-}
-
-function ThemeOption({
-  active,
-  icon,
-  label,
-  onClick,
-}: {
-  active: boolean;
-  icon: React.ReactNode;
-  label: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        "flex h-11 items-center justify-center gap-2 rounded-full text-sm font-medium transition-colors",
-        active
-          ? "bg-accent-strong text-white"
-          : "bg-surface-muted text-ink-soft hover:bg-surface-hover",
-      )}
-    >
-      {icon}
-      {label}
-    </button>
   );
 }

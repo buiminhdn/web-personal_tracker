@@ -1,12 +1,9 @@
 @import "tailwindcss";
 
-/* Dark mode is driven by a `.dark` class on <html>, not the OS setting. */
-@custom-variant dark (&:where(.dark, .dark *));
-
 /*
   Semantic design tokens for the Minimalism Bento Grid dashboard.
-  Surfaces + text flip between light/dark; a single configurable accent
-  (primary colour) drives every highlight. No shadows.
+  A single configurable accent (primary colour) drives every highlight.
+  No shadows.
 */
 @theme {
     --font-sans: "Be Vietnam Pro", ui-sans-serif, system-ui, sans-serif;
@@ -15,7 +12,6 @@
     --color-surface-muted: #f4f4f5; /* chips, icon wells */
     --color-surface-sunken: #fafafa; /* inputs, calendar cells */
     --color-surface-hover: #e4e4e7; /* hovered muted surfaces */
-    --color-shell: rgba(255, 255, 255, 0.62); /* translucent container */
     --color-line: rgba(228, 228, 231, 0.7);
 
     --color-ink: #18181b;
@@ -96,25 +92,6 @@
     color: var(--color-ink-soft);
 }
 
-.dark {
-    --color-surface: #1c1c1f;
-    --color-surface-muted: #27272a;
-    --color-surface-sunken: #232327;
-    --color-surface-hover: #3f3f46;
-    --color-shell: rgba(18, 18, 21, 0.6);
-    --color-line: rgba(63, 63, 70, 0.6);
-
-    --color-ink: #fafafa;
-    --color-ink-soft: #a1a1aa;
-    --color-ink-faint: #71717a;
-
-    --color-btn: #fafafa;
-    --color-btn-ink: #18181b;
-
-    --color-accent-soft: color-mix(in srgb, var(--color-accent) 26%, #000000);
-    --color-accent-ink: color-mix(in srgb, var(--color-accent) 64%, #ffffff);
-}
-
 @layer base {
     * {
         border-color: var(--color-line);
@@ -131,10 +108,9 @@
         font-family: var(--font-sans);
         color: var(--color-ink);
         -webkit-font-smoothing: antialiased;
-        /* Photographic background sitting behind the translucent shell.
-       The image is set at runtime from settings; this is the default. */
-        background-color: #6b5566;
-        background-image: url("/bg-2.jpg");
+        /* Photographic background sitting behind the translucent shell. */
+        background-color: #18181b;
+        background-image: url("./assets/bg.jpg");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
