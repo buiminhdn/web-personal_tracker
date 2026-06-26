@@ -2,6 +2,7 @@ import { Check, Sparkles, Trash2 } from "lucide-react";
 import { cn } from "../lib/cn";
 import { PRIMARY_COLORS, type Settings } from "../lib/settings";
 import { clearData, createSampleData } from "../lib/sample-data";
+import { ChromeStartupGuide } from "./chrome-startup-guide";
 import { useConfirm } from "./confirm-dialog";
 import { FieldLabel, TextField } from "./form-controls";
 import { Modal } from "./modal";
@@ -100,6 +101,10 @@ export function SettingsModal({
             <Sparkles size={16} />
             Tạo data mẫu
           </button>
+        </div>
+
+        <div className="border-t border-line pt-4">
+          <ChromeStartupGuide />
         </div>
       </div>
     </Modal>

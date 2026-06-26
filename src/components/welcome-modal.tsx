@@ -1,4 +1,5 @@
 import { Settings } from "lucide-react";
+import { ChromeStartupGuide } from "./chrome-startup-guide";
 import { Modal } from "./modal";
 
 type WelcomeModalProps = {
@@ -16,7 +17,7 @@ export function WelcomeModal({ open, onClose }: WelcomeModalProps) {
           này, không gửi đi đâu, không cần đăng nhập.
         </p>
 
-        <p className="rounded-[var(--radius-inner)] bg-surface-sunken p-3.5 text-sm leading-relaxed text-ink-soft">
+        <p className="rounded-(--radius-inner) bg-surface-sunken p-3.5 text-sm leading-relaxed text-ink-soft">
           Board đang có <strong className="text-ink">data mẫu</strong>. Hãy mở{" "}
           <span className="inline-flex items-center gap-1 font-medium text-ink">
             <Settings size={13} /> Cài đặt
@@ -24,6 +25,8 @@ export function WelcomeModal({ open, onClose }: WelcomeModalProps) {
           → <strong className="text-ink">Xoá data</strong> để bắt đầu với board
           trống của riêng mình nhé.
         </p>
+
+        <ChromeStartupGuide />
 
         <button
           type="button"
