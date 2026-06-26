@@ -58,6 +58,11 @@ export function ChromeStartupGuide() {
           <span className="text-ink">“Thêm trang mới”</span> và dán link:
           {renderCopyRow(SITE_URL)}
         </li>
+        <li>
+          <strong className="text-ink">B4:</strong> Bấm{" "}
+          <span className="text-ink">“Thêm”</span> — từ giờ mỗi lần mở Chrome,
+          web này sẽ tự động hiện lên.
+        </li>
       </ol>
     </div>
   );
